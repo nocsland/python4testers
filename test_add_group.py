@@ -19,9 +19,9 @@ class UntitledTestCase(unittest.TestCase):
         driver = self.driver
         driver.get("http://localhost/addressbook/")
         driver.find_element_by_name("user").click()
-        driver.find_element_by_id("LoginForm").click()
-        driver.find_element_by_id("LoginForm").click()
-        driver.find_element_by_id("LoginForm").click()
+        driver.find_element_by_name("user").send_keys("admin")
+        driver.find_element_by_name("pass").click()
+        driver.find_element_by_name("pass").send_keys("secret")
         driver.find_element_by_xpath(u"//input[@value='Войти']").click()
         driver.find_element_by_link_text(u"Группы").click()
         driver.find_element_by_name("new").click()
