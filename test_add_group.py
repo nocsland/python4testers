@@ -4,6 +4,7 @@ import unittest
 from selenium import webdriver
 from selenium.common.exceptions import NoAlertPresentException
 from selenium.common.exceptions import NoSuchElementException
+from group import Group
 
 
 def open_home_page(driver):
@@ -22,19 +23,19 @@ def open_groups_page(driver):
     driver.find_element_by_link_text(u"Группы").click()
 
 
-def create_group(driver, name, header, footer):
+def create_group(driver, group):
     # init group creation
     driver.find_element_by_name("new").click()
     # fill group form
     driver.find_element_by_name("group_name").click()
     driver.find_element_by_name("group_name").clear()
-    driver.find_element_by_name("group_name").send_keys(name)
+    driver.find_element_by_name("group_name").send_keys(group.name)
     driver.find_element_by_name("group_header").click()
     driver.find_element_by_name("group_header").clear()
-    driver.find_element_by_name("group_header").send_keys(header)
+    driver.find_element_by_name("group_header").send_keys(group.header)
     driver.find_element_by_name("group_footer").click()
     driver.find_element_by_name("group_footer").clear()
-    driver.find_element_by_name("group_footer").send_keys(footer)
+    driver.find_element_by_name("group_footer").send_keys(group.footer)
     # submit group creation
     driver.find_element_by_name("submit").click()
 
@@ -59,7 +60,7 @@ class UntitledTestCase(unittest.TestCase):
         open_home_page(driver)
         login(driver, username="admin", password="secret")
         open_groups_page(driver)
-        create_group(driver, name="", header="", footer="")
+        create_group(driver, Group(name="", header="", footer=""))
         return_to_groups_page(driver)
         logout(driver)
 
@@ -68,7 +69,7 @@ class UntitledTestCase(unittest.TestCase):
         open_home_page(driver)
         login(driver, username="admin", password="secret")
         open_groups_page(driver)
-        create_group(driver, name="ttththrt", header="gregeg", footer="thtrhrwh")
+        create_group(driver, Group(name="ttththrt", header="gregeg", footer="thtrhrwh"))
         return_to_groups_page(driver)
         logout(driver)
 
