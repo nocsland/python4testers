@@ -13,4 +13,4 @@ class SessionHelper:
 
     def logout(self):
         driver = self.app.driver
-        driver.find_element_by_link_text(u"Выйти").click()
+        driver.find_element_by_link_text("Выйти").click()
